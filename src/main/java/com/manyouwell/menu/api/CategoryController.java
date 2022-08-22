@@ -2,7 +2,6 @@ package com.manyouwell.menu.api;
 
 import com.manyouwell.menu.model.Category;
 import com.manyouwell.menu.service.MenuService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +24,8 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> insertCategory(@RequestBody Category categoryReq) {
-        System.out.println(String.format("Got post request %s",categoryReq));
-        return ResponseEntity.ok(this.menuService.insert(categoryReq));
+    public ResponseEntity<Category[]> insertCategory(@RequestBody Category[] categoryReq) {
+        // TODO validate request body
+        return ResponseEntity.ok(this.menuService.resetMenuCard(categoryReq));
     }
 }

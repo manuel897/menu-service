@@ -3,19 +3,15 @@ package com.manyouwell.menu.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.manyouwell.menu.dao.CategoryRepo;
 import com.manyouwell.menu.model.Category;
-import com.manyouwell.menu.model.Menu;
+import com.manyouwell.menu.model.MenuCard;
 
-import com.manyouwell.menu.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,8 +36,13 @@ public class MenuService {
             if(menuDataResource.exists()) {
                 File menuDataFile = menuDataResource.getFile();
                 ObjectMapper objectMapper = new ObjectMapper();
-                Menu menu = objectMapper.readValue(menuDataFile, Menu.class);
+                Category[] categories = objectMapper.readValue(menuDataFile, Category[].class);
 
+                MenuCard menu = MenuCard.MenuCard();
+                menu.setTimestamp(LocalDateTime.now());
+                menu.setCategories(categories);
+
+                // System.out.println(String.format("LOG: %s", menu.ToString()));
                 for (Category c : menu.getCategories()
                      ) {
                     this.categoryRepo.insert(c);
@@ -55,4 +56,17 @@ public class MenuService {
 
     public List<Category> findAll() { return this.categoryRepo.findAll(); }
     public Category insert(Category category) { return this.categoryRepo.insert(category); }
+
+    public Category[] resetMenuCard(Category[] categories) {
+        this.categoryRepo.deleteAll();
+        for(Category c: categories) {
+            this.categoryRepo.insert(c);
+        }
+        MenuCard menucard = MenuCard.MenuCard();
+        menucard.setCategories(categories);
+        menucard.setTimestamp(LocalDateTime.now());
+
+        // System.out.println(String.format("LOG: %s", menucard.ToString()));
+        return categories;
+    }
 }
