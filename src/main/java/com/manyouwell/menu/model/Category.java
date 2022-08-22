@@ -1,5 +1,6 @@
 package com.manyouwell.menu.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
@@ -7,7 +8,9 @@ import java.util.List;
 
 public class Category {
     @Id
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("items")
     private Item[] items;
 
     public String getName() {
@@ -31,6 +34,7 @@ public class Category {
         this.name = name;
         this.items = items;
     }
+    public Category() {}
 
     public String toString()  {
         return String.format("%s has %s items",name, items.length);

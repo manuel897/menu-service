@@ -1,7 +1,12 @@
 package com.manyouwell.menu.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Item {
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("price")
     private int price;
 
 
@@ -25,6 +30,8 @@ public class Item {
         this.name = name;
         this.price = price;
     }
+
+    public Item() {}
 
     @Override
     public String toString()  {
