@@ -18,6 +18,7 @@ public class CategoryController {
         this.menuService = menuService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<Category> findAll() {
         return this.menuService.findAll();
