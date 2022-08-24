@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -68,5 +69,10 @@ public class MenuService {
 
         // System.out.println(String.format("LOG: %s", menucard.ToString()));
         return categories;
+    }
+
+    public Category insertCategory(Category c) {
+        this.categoryRepo.insert(c);
+        return c;
     }
 }

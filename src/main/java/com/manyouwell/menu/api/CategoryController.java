@@ -24,9 +24,17 @@ public class CategoryController {
         return this.menuService.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Category[]> insertCategory(@RequestBody Category[] categoryReq) {
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/reset")
+    public ResponseEntity<Category[]> resetMenu(@RequestBody Category[] categoryReq) {
         // TODO validate request body
         return ResponseEntity.ok(this.menuService.resetMenuCard(categoryReq));
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/add")
+    public ResponseEntity<Category> insertCategory(@RequestBody Category categoryReq) {
+        // TODO validate request body
+        return ResponseEntity.ok(this.menuService.insertCategory(categoryReq));
     }
 }
