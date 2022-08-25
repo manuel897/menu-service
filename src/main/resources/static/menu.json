@@ -1,131 +1,252 @@
  [
-    {
-      "name": "Smoothie",
-      "items": [
-        {
-          "name": "orange smoothie",
-          "price": 80
-        },
-        {
-          "name": "pineapple smoothie",
-          "price": 80
-        },
-        {
-          "name": "pineapple orange",
-          "price": 80
-        },
-        {
-          "name": "mango smoothie",
-          "price": 80
-        }
-      ]
-    },
-    {
-      "name": "Shakes",
-      "items": [
-        {
-          "name": "chocolate",
-          "price": 80
-        },
-        {
-          "name": "vanilla",
-          "price": 70
-        },
-        {
-          "name": "Sharjah",
-          "price": 60
-        },
-        {
-          "name": "Badam",
-          "price": 80
-        },
-        {
-          "name": "Oman",
-          "price": 80
-        },
-        {
-          "name": "Saudi",
-          "price": 80
-        },
-        {
-          "name": "Nuts",
-          "price": 90
-        },
-        {
-          "name": "Butterscotch",
-          "price": 90
-        },
-        {
-          "name": "Strawberry",
-          "price": 80
-        },
-        {
-          "name": "Pista",
-          "price": 80
-        },
-        {
-          "name": "Oreo",
-          "price": 80
-        },
-        {
-          "name": "Snickers",
-          "price": 90
-        },
-        {
-          "name": "Kitkat",
-          "price": 90
-        },
-        {
-          "name": "Dairymilk",
-          "price": 90
-        },
-        {
-          "name": "Strawberry",
-          "price": 80
-        },
-        {
-          "name": "Spanish Delight",
-          "price": 90
-        },
-        {
-          "name": "Sharjah Salad",
-          "price": 80
-        },
-        {
-          "name": "Choco Sharjah",
-          "price": 80
-        },
-        {
-          "name": "Choco Vanilla",
-          "price": 80
-        }
-      ]
-    },
-    {
-      "name": "Fruit shakes",
-      "items": [
-        {
-          "name": "Chikku",
-          "price": 90
-        },
-        {
-          "name": "Musk Melon",
-          "price": 90
-        },
-        {
-          "name": "Pappaya",
-          "price": 90
-        },
-        {
-          "name": "Mango",
-          "price": 90
-        },
-        {
-          "name": "Apple",
-          "price": 90
-        }
-      ]
-    }
-  ]
+   {
+      "name": "Ice cream scoops",
+     "items": [
+       {
+       "name": "Vanilla",
+       "price": 50
+       },
+       {
+         "name": "Strawberry",
+         "price": 50
+       },
+       {
+         "name": "Pista",
+         "price": 60
+       },
+       {
+         "name": "Chocolate",
+         "price": 60
+       },
+       {
+         "name": "Butterscotch",
+         "price": 60
+       },
+       {
+         "name": "Spanish Delight",
+         "price": 50
+       }
+     ]
+   },
+   {
+     "name": "Shakes",
+     "items": [
+       {
+         "name": "Chocolate Shake",
+         "price": 80
+       },
+       {
+         "name": "Pista Shake",
+         "price": 80
+       },
+       {
+         "name": "Vanilla Shake",
+         "price": 70
+       },
+       {
+         "name": "Butterscotch Shake",
+         "price": 80
+       },
+       {
+         "name": "Nuts Shake",
+         "price": 90
+       },
+       {
+         "name": "Strawberry Shake",
+         "price": 80
+       },
+       {
+         "name": "Oreo Shake",
+         "price": 80
+       },
+       {
+         "name": "Snickers Shake",
+         "price": 100
+       },
+       {
+         "name": "Kitkat Shake",
+         "price": 100
+       },
+       {
+         "name": "Dairymilk Shake",
+         "price": 100
+       },
+       {
+         "name": "Sharja Shake",
+         "price": 60
+       }
+     ]
+   },
+   {
+     "name": "Falooda",
+     "items": [
+       {
+         "name": "Falooda",
+         "price": 120
+       },
+       {
+         "name": "Royal Falooda",
+         "price": 150
+       },
+       {
+         "name": "Malabar Falooda",
+         "price": 150
+       },
+       {
+         "name": "Fruit Salad Falooda",
+         "price": 80
+       }
+     ]
+   },
+   {
+     "name": "Cold Beverages",
+     "items": [
+       {
+         "name": "Cold Coffee",
+         "price": 50
+       },
+       {
+         "name": "Pista Milk",
+         "price": 50
+       },
+       {
+         "name": "Rose Milk",
+         "price": 50
+       },
+       {
+         "name": "Badam Milk",
+         "price": 50
+       }
+     ]
+   },
+   {
+     "name": "Hot Beverages",
+     "items": [
+       {
+         "name": "Bru Coffee",
+         "price": 16
+       },
+       {
+         "name": "Boost",
+         "price": 30
+       }
+     ]
+   },
+   {
+     "name": "Fruit juices",
+     "items": [
+       {
+         "name": "Grape",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Mango",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Pineapple",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Mosambi",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Apple",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Avacado",
+         "price": "Seasonal"
+       },
+       {
+         "name": "Orange",
+         "price": "Seasonal"
+       }
+     ]
+   },
+   {
+     "name": "Lime",
+     "items": [
+       {
+         "name": "Fresh Lime",
+         "price": 25
+       },
+       {
+         "name": "Green Apple",
+         "price": 25
+       },
+       {
+         "name": "Mint Lime",
+         "price": 30
+       },
+       {
+         "name": "Grape Lime",
+         "price": 30
+       },
+       {
+         "name": "Strawberry Lime",
+         "price": 30
+       },
+       {
+         "name": "Soda Lime",
+         "price": 20
+       },
+       {
+         "name": "Lime Juice",
+         "price": 15
+       }
+     ]
+   },
+   {
+     "name": "Snacks & Dishes",
+     "items": [
+       {
+         "name": "Chicken Sandwich",
+         "price": 45
+       },
+       {
+         "name": "Chicken Burger",
+         "price": 50
+       },
+       {
+         "name": "Veg. Sandwich",
+         "price": 30
+       },
+       {
+         "name": "Chicken Pizza",
+         "price": 60
+       },
+       {
+         "name": "Egg Puffs",
+         "price": 20
+       },
+       {
+         "name": "Banana Puffs",
+         "price": 18
+       },
+       {
+         "name": "Chicken Cutlet",
+         "price": 20
+       },
+       {
+         "name": "Samosa",
+         "price": 12
+       },
+       {
+         "name": "Pa---",
+         "price": 12
+       },
+       {
+         "name": "Bonda",
+         "price": 12
+       },
+       {
+         "name": "Neyyapppam",
+         "price": 15
+       }
+     ]
+   }
+ ]
 
 
