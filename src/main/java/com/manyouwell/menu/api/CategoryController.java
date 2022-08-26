@@ -18,20 +18,20 @@ public class CategoryController {
         this.menuService = menuService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @GetMapping
     public List<Category> findAll() {
         return this.menuService.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PostMapping("/reset")
     public ResponseEntity<Category[]> resetMenu(@RequestBody Category[] categoryReq) {
         // TODO validate request body
         return ResponseEntity.ok(this.menuService.resetMenuCard(categoryReq));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PostMapping("/add")
     public ResponseEntity<Category> insertCategory(@RequestBody Category categoryReq) {
         // TODO validate request body

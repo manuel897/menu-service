@@ -24,10 +24,10 @@ public class MenuService {
         this.categoryRepo = categoryRepo;
     }
 
-    @PostConstruct
-    public void init() {
-        this.loadMenuData();
-    }
+//    @PostConstruct
+//    public void init() {
+//        this.loadMenuData();
+//    }
 
     private void loadMenuData() {
         try {
