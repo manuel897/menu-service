@@ -1,6 +1,6 @@
  [
    {
-      "name": "Ice cream scoops",
+      "name": "Ice Cream Scoops",
      "items": [
        {
        "name": "Vanilla",
@@ -133,7 +133,7 @@
      ]
    },
    {
-     "name": "Fruit juices",
+     "name": "Fresh Juices",
      "items": [
        {
          "name": "Grape",
@@ -156,7 +156,7 @@
          "price": "Seasonal"
        },
        {
-         "name": "Avacado",
+         "name": "Avocado",
          "price": "Seasonal"
        },
        {
@@ -234,7 +234,7 @@
          "price": 12
        },
        {
-         "name": "Pa---",
+         "name": "Pathiri",
          "price": 12
        },
        {
