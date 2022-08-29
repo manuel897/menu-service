@@ -2,6 +2,8 @@ package com.manyouwell.menu.api;
 
 import com.manyouwell.menu.model.Category;
 import com.manyouwell.menu.service.MenuService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("category")
 public class CategoryController {
+    private static Logger logger = LogManager.getLogger(CategoryController.class);
     private final MenuService menuService;
 
     @Autowired
@@ -21,6 +24,10 @@ public class CategoryController {
     @CrossOrigin(origins = "*")
     @GetMapping
     public List<Category> findAll() {
+
+        logger.debug("Debug log message");
+        logger.info("Info log message");
+        logger.error("Error log message");
         return this.menuService.findAll();
     }
 
