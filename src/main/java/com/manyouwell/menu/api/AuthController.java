@@ -1,6 +1,8 @@
 package com.manyouwell.menu.api;
 
 import com.manyouwell.menu.model.Category;
+import com.manyouwell.menu.payload.request.LoginRequest;
+import com.manyouwell.menu.payload.request.SignupRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody String categoryReq) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginReq) {
         // TODO validate request body
-        logger.debug("login request received");
+        logger.debug("login request received {}",loginReq);
+        return ResponseEntity.ok("not implemented");
+    }
+    @PostMapping("/signup")
+    public ResponseEntity<String> login(@RequestBody SignupRequest signupReq) {
+        // TODO validate request body
+        logger.debug("signup request received {}",signupReq.getRoles());
         return ResponseEntity.ok("not implemented");
     }
 }
