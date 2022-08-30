@@ -1,17 +1,21 @@
 package com.manyouwell.menu.api;
 
 import com.manyouwell.menu.dao.UserRepo;
-import com.manyouwell.menu.model.Category;
 import com.manyouwell.menu.model.Role;
 import com.manyouwell.menu.model.User;
 import com.manyouwell.menu.payload.request.LoginRequest;
 import com.manyouwell.menu.payload.request.SignupRequest;
+import com.manyouwell.menu.payload.response.JwtResponse;
 import com.manyouwell.menu.payload.response.MessageResponse;
 import com.manyouwell.menu.security.jwt.JwtUtils;
+import com.manyouwell.menu.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("auth")
@@ -33,7 +38,7 @@ public class AuthController {
     UserRepo userRepo;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -44,15 +49,30 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginReq) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginReq) {
         // TODO validate request body
-        logger.debug("login request received {}",loginReq);
-        return ResponseEntity.ok("not implemented");
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginReq.getUsername(), loginReq.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(
+                jwt,
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles
+        ));
     }
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupReq) {
         // TODO validate request body
-        logger.debug("signup request received for role: {}",signupReq.getRoles());
         if(userRepo.existsByUsername(signupReq.getUsername())) {
             return ResponseEntity.badRequest()
                     .body(new MessageResponse("Error: Username is already taken."));
@@ -62,8 +82,10 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already registered."));
         }
         User user = new User(signupReq.getUsername(),
-                passwordEncoder.encode(signupReq.getPassword()),
+                encoder.encode(signupReq.getPassword()),
                 signupReq.getEmail());
+
+        logger.debug("Created user {} | {}", user.getUsername(), user.getPassword());
         Set<String> strRoles = signupReq.getRoles();
         Set<Role> roles = new HashSet<Role>();
 
@@ -79,7 +101,6 @@ public class AuthController {
                     throw new RuntimeException("Role is not found.");
             }
         });
-        logger.debug(user.getPassword());
         user.setRoles(roles);
         userRepo.save(user);
         return ResponseEntity.ok(new MessageResponse(String.format("User %s saved", user.getUsername())));
