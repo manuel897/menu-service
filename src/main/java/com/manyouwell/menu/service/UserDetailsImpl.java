@@ -1,5 +1,6 @@
 package com.manyouwell.menu.service;
 
+import com.manyouwell.menu.api.AuthController;
 import com.manyouwell.menu.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,44 +39,44 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(
                 user.getUsername(),
                 user.getEmail(),
-                user.getEmail(),
+                user.getPassword(),
                 authorities
         );
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) {
