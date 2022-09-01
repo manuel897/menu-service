@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin("https://lordstdpa.com")
 @RequestMapping("auth")
 public class AuthController {
     private static Logger logger = LogManager.getLogger(AuthController.class);
@@ -49,7 +51,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginReq) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginReq, HttpServletResponse response) {
         // TODO validate request body
 
         Authentication authentication = authenticationManager.authenticate(
@@ -85,7 +87,6 @@ public class AuthController {
                 encoder.encode(signupReq.getPassword()),
                 signupReq.getEmail());
 
-        logger.debug("Created user {} | {}", user.getUsername(), user.getPassword());
         Set<String> strRoles = signupReq.getRoles();
         Set<Role> roles = new HashSet<Role>();
 

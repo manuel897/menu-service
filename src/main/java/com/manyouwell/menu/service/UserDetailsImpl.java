@@ -2,6 +2,8 @@ package com.manyouwell.menu.service;
 
 import com.manyouwell.menu.api.AuthController;
 import com.manyouwell.menu.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
+    private static Logger logger = LogManager.getLogger(AuthController.class);
+
     private String username;
     private String email;
     private String password;

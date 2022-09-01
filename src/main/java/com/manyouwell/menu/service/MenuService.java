@@ -43,7 +43,6 @@ public class MenuService {
                 menu.setTimestamp(LocalDateTime.now());
                 menu.setCategories(categories);
 
-                // System.out.println(String.format("LOG: %s", menu.ToString()));
                 for (Category c : menu.getCategories()
                      ) {
                     this.categoryRepo.insert(c);
@@ -74,5 +73,9 @@ public class MenuService {
     public Category insertCategory(Category c) {
         this.categoryRepo.insert(c);
         return c;
+    }
+
+    public Boolean existsByCategoryName(String name) {
+        return this.categoryRepo.existsByName(name);
     }
 }

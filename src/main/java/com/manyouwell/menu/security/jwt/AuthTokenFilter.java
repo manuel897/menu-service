@@ -17,12 +17,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    private static Logger logger = LogManager.getLogger(AuthController.class);
+    private static Logger logger = LogManager.getLogger(AuthTokenFilter.class);
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -50,12 +51,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
-        logger.debug("authorization header for request {}: {}", request.getRequestURI(), headerAuth);
+
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             return headerAuth.substring(7, headerAuth.length());
         }
         return null;
     }
-
 }
 
