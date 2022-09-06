@@ -10,6 +10,7 @@ import com.manyouwell.menu.payload.response.MessageResponse;
 import com.manyouwell.menu.security.jwt.JwtUtils;
 import com.manyouwell.menu.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,9 +30,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("https://lordstdpa.com")
+//@CrossOrigin("http://localhost:3000")
 @RequestMapping("auth")
 public class AuthController {
     private static Logger logger = LogManager.getLogger(AuthController.class);
+
+    @Value("${spring.data.mongodb.host}")
+    public String usingHost;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -47,7 +52,7 @@ public class AuthController {
 
     @GetMapping(path = "/hello")
     public ResponseEntity<String> hello() {
-        return new ResponseEntity<>("hello from menu service auth",HttpStatus.OK);
+        return new ResponseEntity<>(String.format("hello from menu service auth. Using host %s",this.usingHost),HttpStatus.OK);
     }
 
     @PostMapping("/login")

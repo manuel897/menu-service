@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("https://lordstdpa.com")
+//@CrossOrigin("http://localhost:3000")
 @RequestMapping("category")
 public class CategoryController {
     private static Logger logger = LogManager.getLogger(CategoryController.class);
