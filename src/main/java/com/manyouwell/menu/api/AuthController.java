@@ -29,11 +29,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin("https://lordstdpa.com")
-//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"https://www.lordstdpa.com", "https://lordstdpa.com"})
 @RequestMapping("auth")
 public class AuthController {
-    private static Logger logger = LogManager.getLogger(AuthController.class);
+    private static final Logger logger = LogManager.getLogger(AuthController.class);
 
     @Value("${spring.data.mongodb.host}")
     public String usingHost;
@@ -93,18 +92,13 @@ public class AuthController {
                 signupReq.getEmail());
 
         Set<String> strRoles = signupReq.getRoles();
-        Set<Role> roles = new HashSet<Role>();
+        Set<Role> roles = new HashSet<>();
 
         strRoles.forEach((strRole) -> {
             switch (strRole) {
-                case "ROLE_MODERATOR":
-                    roles.add(Role.ROLE_MODERATOR);
-                    break;
-                case "ROLE_ADMIN":
-                    roles.add(Role.ROLE_ADMIN);
-                    break;
-                default:
-                    throw new RuntimeException("Role is not found.");
+                case "ROLE_MODERATOR" -> roles.add(Role.ROLE_MODERATOR);
+                case "ROLE_ADMIN" -> roles.add(Role.ROLE_ADMIN);
+                default -> throw new RuntimeException("Role is not found.");
             }
         });
         user.setRoles(roles);

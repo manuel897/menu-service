@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@CrossOrigin("https://lordstdpa.com")
-//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"https://www.lordstdpa.com", "https://lordstdpa.com"})
 @RequestMapping("category")
 public class CategoryController {
-    private static Logger logger = LogManager.getLogger(CategoryController.class);
+    private static final Logger logger = LogManager.getLogger(CategoryController.class);
 
     private final MenuService menuService;
 
@@ -25,6 +25,13 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<?> findAll() {
+
+//        CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(
+//            // Your code here executes after 5 seconds!
+//            return ResponseEntity.ok(this.menuService.findAll());
+//
+//        );
+
         return ResponseEntity.ok(this.menuService.findAll());
     }
 
