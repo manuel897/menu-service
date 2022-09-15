@@ -10,7 +10,7 @@
     <!-- lookup parent from repository --> 
   </parent>  
   <groupId>com.manyouwell</groupId>  
-  <artifactId>menu-service</artifactId>
+  <artifactId>menu-backend</artifactId>
   <version>1.0.0</version>
   <name>menu</name>  
   <description>Spring Boot backend app for providing data for a menu card app.</description>  
