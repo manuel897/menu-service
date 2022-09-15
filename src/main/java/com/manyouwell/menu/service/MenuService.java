@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -43,7 +41,6 @@ public class MenuService {
                 menu.setTimestamp(LocalDateTime.now());
                 menu.setCategories(categories);
 
-                // System.out.println(String.format("LOG: %s", menu.ToString()));
                 for (Category c : menu.getCategories()
                      ) {
                     this.categoryRepo.insert(c);
@@ -74,5 +71,9 @@ public class MenuService {
     public Category insertCategory(Category c) {
         this.categoryRepo.insert(c);
         return c;
+    }
+
+    public Boolean existsByCategoryName(String name) {
+        return this.categoryRepo.existsByName(name);
     }
 }
